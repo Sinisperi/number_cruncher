@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=3 uid="uid://mgqnwmtp3l0o"]
+
+[ext_resource type="Script" uid="uid://spfjfg2y1siv" path="res://scripts/crunchable_number.gd" id="1_x7rft"]
+[ext_resource type="FontFile" uid="uid://ce7xho4u6qy0y" path="res://assets/ZCOOLQingKeHuangYou-Regular.ttf" id="2_3qq4h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x7rft"]
+
+[sub_resource type="FontVariation" id="FontVariation_wtvnv"]
+base_font = ExtResource("2_3qq4h")
+
+[sub_resource type="Gradient" id="Gradient_3qq4h"]
+offsets = PackedFloat32Array(0.00425532)
+colors = PackedColorArray(0, 0.976471, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wtvnv"]
+gradient = SubResource("Gradient_3qq4h")
+width = 3
+height = 3
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3qq4h"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 1.62
+initial_velocity_max = 86.53
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -92.78
+linear_accel_max = 19.61
+color = Color(0, 0.815686, 0, 1)
+
+[node name="PanelContainer" type="PanelContainer"]
+custom_minimum_size = Vector2(32, 32)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_x7rft")
+script = ExtResource("1_x7rft")
+hover_animation_duration = 0.162
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Label" type="Label" parent="Control"]
+unique_name_in_owner = true
+self_modulate = Color(0.26237, 0.984032, 0.313492, 1)
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(12, 12)
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("FontVariation_wtvnv")
+theme_override_font_sizes/font_size = 16
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DamageLabel" type="Label" parent="Control"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 0
+offset_left = 9.0
+offset_top = 7.0
+offset_right = 33.0
+offset_bottom = 31.0
+scale = Vector2(0.983099, 1.16129)
+pivot_offset = Vector2(12, 12)
+text = "-90"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(21, 19)
+emitting = false
+amount = 10
+texture = SubResource("GradientTexture2D_wtvnv")
+lifetime = 0.2
+one_shot = true
+preprocess = 0.06
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_3qq4h")

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ConsumableItem" load_steps=2 format=3 uid="uid://k45evdwfwrab"]
+
+[ext_resource type="Script" path="res://scripts/resources/consumable_item.gd" id="1_npqab"]
+
+[resource]
+script = ExtResource("1_npqab")
+name = ""

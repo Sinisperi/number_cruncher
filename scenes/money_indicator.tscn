@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://diaq3aqps8814"]
+
+[ext_resource type="Script" uid="uid://ccr86qnsjp4m2" path="res://scripts/money_indicator.gd" id="1_fekc3"]
+
+[sub_resource type="Gradient" id="Gradient_jbj1t"]
+offsets = PackedFloat32Array(0.220779, 0.279221)
+colors = PackedColorArray(1, 0.831373, 0.321569, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_trceg"]
+gradient = SubResource("Gradient_jbj1t")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.522936, 0.5)
+
+[node name="MoneyIndicator" type="HBoxContainer"]
+size_flags_horizontal = 10
+script = ExtResource("1_fekc3")
+
+[node name="Money" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "909"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_trceg")

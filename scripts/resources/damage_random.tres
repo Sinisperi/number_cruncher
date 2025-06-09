@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DamageRandom" load_steps=4 format=3 uid="uid://djnoob21oxp3m"]
+
+[ext_resource type="Script" uid="uid://la2qkb7uk3j" path="res://scripts/resources/damage_random.gd" id="1_wxxuv"]
+
+[sub_resource type="Gradient" id="Gradient_wxxuv"]
+offsets = PackedFloat32Array(0.896104, 1)
+colors = PackedColorArray(1, 1, 0, 1, 1, 0, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fwjs0"]
+gradient = SubResource("Gradient_wxxuv")
+fill = 2
+fill_from = Vector2(0.495413, 0.477064)
+fill_to = Vector2(0.87156, 0.853211)
+
+[resource]
+script = ExtResource("1_wxxuv")
+activation_flags = 1
+name = "Damage Random"
+texture = SubResource("GradientTexture2D_fwjs0")
+price = 3
+description = "At the start of each attempt damages random number on the board"
+metadata/_custom_type_script = "uid://la2qkb7uk3j"

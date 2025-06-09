@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://cs6ppshg4vdda"]
+
+[ext_resource type="Texture2D" uid="uid://cdv18ctfj5ihd" path="res://assets/attempt_bg.jpg" id="1_rgedk"]
+[ext_resource type="Script" uid="uid://cwiswene8ycvm" path="res://scripts/attempt.gd" id="2_feibj"]
+[ext_resource type="Texture2D" uid="uid://go2ckuctfdn0" path="res://assets/attempt_fg.png" id="2_x28q3"]
+
+[sub_resource type="Gradient" id="Gradient_feibj"]
+colors = PackedColorArray(1.779, 0.435, 0.08, 1, 1, 0, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_755gg"]
+gradient = SubResource("Gradient_feibj")
+width = 1
+
+[node name="Attempt" type="TextureRect"]
+custom_minimum_size = Vector2(64, 24)
+offset_right = 64.0
+offset_bottom = 24.0
+size_flags_horizontal = 0
+texture = ExtResource("1_rgedk")
+script = ExtResource("2_feibj")
+
+[node name="ActiveTexture" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_755gg")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_x28q3")

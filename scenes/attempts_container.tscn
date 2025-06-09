@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://xxdj54m3rq13"]
+
+[ext_resource type="Script" uid="uid://brqj34cta1mte" path="res://scripts/attempts_container.gd" id="1_hfkbg"]
+[ext_resource type="PackedScene" uid="uid://cs6ppshg4vdda" path="res://scenes/attempt.tscn" id="2_ke4y2"]
+
+[node name="AttemptsContainer" type="PanelContainer"]
+custom_minimum_size = Vector2(50, 400)
+size_flags_horizontal = 3
+script = ExtResource("1_hfkbg")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="VBoxContainer2/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Crunch Attempts"
+
+[node name="AttemptsList" type="VBoxContainer" parent="VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Attempt" parent="VBoxContainer2/AttemptsList" instance=ExtResource("2_ke4y2")]
+layout_mode = 2
+
+[node name="Attempt2" parent="VBoxContainer2/AttemptsList" instance=ExtResource("2_ke4y2")]
+layout_mode = 2
+
+[node name="Attempt3" parent="VBoxContainer2/AttemptsList" instance=ExtResource("2_ke4y2")]
+layout_mode = 2
+
+[node name="Attempt4" parent="VBoxContainer2/AttemptsList" instance=ExtResource("2_ke4y2")]
+layout_mode = 2
+
+[node name="Attempt5" parent="VBoxContainer2/AttemptsList" instance=ExtResource("2_ke4y2")]
+layout_mode = 2
+
+[node name="Attempt6" parent="VBoxContainer2/AttemptsList" instance=ExtResource("2_ke4y2")]
+layout_mode = 2
+
+[node name="Attempt7" parent="VBoxContainer2/AttemptsList" instance=ExtResource("2_ke4y2")]
+layout_mode = 2
+
+[node name="Attempt8" parent="VBoxContainer2/AttemptsList" instance=ExtResource("2_ke4y2")]
+layout_mode = 2
+
+[node name="Attempt9" parent="VBoxContainer2/AttemptsList" instance=ExtResource("2_ke4y2")]
+layout_mode = 2
+
+[node name="Attempt10" parent="VBoxContainer2/AttemptsList" instance=ExtResource("2_ke4y2")]
+layout_mode = 2
+
+[node name="Attempt11" parent="VBoxContainer2/AttemptsList" instance=ExtResource("2_ke4y2")]
+layout_mode = 2
+
+[node name="Attempt12" parent="VBoxContainer2/AttemptsList" instance=ExtResource("2_ke4y2")]
+layout_mode = 2

@@ -1,0 +1,287 @@
+[gd_scene load_steps=17 format=3 uid="uid://djjijc1gygm01"]
+
+[ext_resource type="Script" uid="uid://cteg88q6qf8t2" path="res://scripts/quota_progress.gd" id="1_cnvne"]
+[ext_resource type="Script" uid="uid://bsayoymrcllwq" path="res://scripts/workspace.gd" id="1_thvsl"]
+[ext_resource type="PackedScene" uid="uid://xxdj54m3rq13" path="res://scenes/attempts_container.tscn" id="2_c1nar"]
+[ext_resource type="PackedScene" uid="uid://diaq3aqps8814" path="res://scenes/money_indicator.tscn" id="2_kq4ke"]
+[ext_resource type="Shader" uid="uid://cojsqap7dpno1" path="res://shaders/monitor.gdshader" id="4_kq4ke"]
+[ext_resource type="Script" uid="uid://c6w54ho1wweow" path="res://scripts/number_container.gd" id="4_ychec"]
+[ext_resource type="PackedScene" uid="uid://mgqnwmtp3l0o" path="res://scenes/crunchable_number.tscn" id="5_ghqjl"]
+
+[sub_resource type="Gradient" id="Gradient_wjago"]
+offsets = PackedFloat32Array(0, 0.732394, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cnvne"]
+gradient = SubResource("Gradient_wjago")
+
+[sub_resource type="Gradient" id="Gradient_thvsl"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0.537255, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_c1nar"]
+gradient = SubResource("Gradient_thvsl")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kq4ke"]
+
+[sub_resource type="Gradient" id="Gradient_c1nar"]
+colors = PackedColorArray(7.52043e-10, 1.50409e-09, 0.0381053, 1, 0, 0, 0.0431373, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kq4ke"]
+gradient = SubResource("Gradient_c1nar")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ychec"]
+shader = ExtResource("4_kq4ke")
+shader_parameter/resolution = Vector2(960, 540)
+shader_parameter/scan_line_amount = 1.0
+shader_parameter/warp_amount = 0.1
+shader_parameter/noise_amount = 0.0
+shader_parameter/interference_amount = 0.208
+shader_parameter/grille_amount = 0.0
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 0.6
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/aberation_amount = 0.624
+shader_parameter/roll_line_amount = 0.0
+shader_parameter/roll_speed = -8.0
+shader_parameter/scan_line_strength = -8.0
+shader_parameter/pixel_strength = -1.984
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ghqjl"]
+
+[node name="Workspace" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 700.0
+offset_bottom = 500.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+script = ExtResource("1_thvsl")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -324.0
+offset_right = 325.0
+offset_bottom = 500.0
+grow_horizontal = 2
+
+[node name="MainContainer" type="HBoxContainer" parent="PanelContainer"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+mouse_filter = 2
+
+[node name="AttemptsContainer" parent="PanelContainer/MainContainer" instance=ExtResource("2_c1nar")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/MainContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Header" type="HBoxContainer" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="QuotaProgress" type="TextureProgressBar" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer2/MarginContainer/Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+nine_patch_stretch = true
+texture_under = SubResource("GradientTexture1D_cnvne")
+texture_progress = SubResource("GradientTexture1D_c1nar")
+script = ExtResource("1_cnvne")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer2/MarginContainer/Header/QuotaProgress"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.5
+offset_top = -11.5
+offset_right = 17.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Current" type="Label" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer2/MarginContainer/Header/QuotaProgress/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0"
+
+[node name="Label" type="Label" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer2/MarginContainer/Header/QuotaProgress/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "/"
+
+[node name="Quota" type="Label" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer2/MarginContainer/Header/QuotaProgress/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0"
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MainContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+mouse_filter = 1
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer"]
+material = SubResource("ShaderMaterial_kq4ke")
+layout_mode = 2
+texture = SubResource("GradientTexture1D_kq4ke")
+
+[node name="NumberContainer" type="GridContainer" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+columns = 10
+script = ExtResource("4_ychec")
+number_scene = ExtResource("5_ghqjl")
+
+[node name="PanelContainer" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer/NumberContainer" instance=ExtResource("5_ghqjl")]
+layout_mode = 2
+
+[node name="PanelContainer2" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer/NumberContainer" instance=ExtResource("5_ghqjl")]
+layout_mode = 2
+
+[node name="PanelContainer3" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer/NumberContainer" instance=ExtResource("5_ghqjl")]
+layout_mode = 2
+
+[node name="PanelContainer4" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer/NumberContainer" instance=ExtResource("5_ghqjl")]
+layout_mode = 2
+
+[node name="PanelContainer5" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer/NumberContainer" instance=ExtResource("5_ghqjl")]
+layout_mode = 2
+
+[node name="PanelContainer6" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer/NumberContainer" instance=ExtResource("5_ghqjl")]
+layout_mode = 2
+
+[node name="PanelContainer7" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer/NumberContainer" instance=ExtResource("5_ghqjl")]
+layout_mode = 2
+
+[node name="PanelContainer8" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer/NumberContainer" instance=ExtResource("5_ghqjl")]
+layout_mode = 2
+
+[node name="PanelContainer9" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer/NumberContainer" instance=ExtResource("5_ghqjl")]
+layout_mode = 2
+
+[node name="PanelContainer10" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer/NumberContainer" instance=ExtResource("5_ghqjl")]
+layout_mode = 2
+
+[node name="PanelContainer11" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer/NumberContainer" instance=ExtResource("5_ghqjl")]
+layout_mode = 2
+
+[node name="PanelContainer12" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer/NumberContainer" instance=ExtResource("5_ghqjl")]
+layout_mode = 2
+
+[node name="PanelContainer13" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer/NumberContainer" instance=ExtResource("5_ghqjl")]
+layout_mode = 2
+
+[node name="PanelContainer14" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer/NumberContainer" instance=ExtResource("5_ghqjl")]
+layout_mode = 2
+
+[node name="PanelContainer15" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer/NumberContainer" instance=ExtResource("5_ghqjl")]
+layout_mode = 2
+
+[node name="PanelContainer16" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer/NumberContainer" instance=ExtResource("5_ghqjl")]
+layout_mode = 2
+
+[node name="PanelContainer17" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer/NumberContainer" instance=ExtResource("5_ghqjl")]
+layout_mode = 2
+
+[node name="PanelContainer18" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer/NumberContainer" instance=ExtResource("5_ghqjl")]
+layout_mode = 2
+
+[node name="CRTOverlay" type="TextureRect" parent="PanelContainer/MainContainer/VBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_ychec")
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("NoiseTexture2D_ghqjl")
+expand_mode = 1
+
+[node name="HBoxContainer3" type="VBoxContainer" parent="PanelContainer/MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NextLevel" type="Button" parent="PanelContainer/MainContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Next"
+
+[node name="PanelContainer3" type="PanelContainer" parent="PanelContainer/MainContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+
+[node name="MoneyIndicator" parent="PanelContainer/MainContainer/HBoxContainer3/PanelContainer3" instance=ExtResource("2_kq4ke")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/MainContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="LevelIndicator" type="HBoxContainer" parent="PanelContainer/MainContainer/HBoxContainer3/PanelContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="PanelContainer/MainContainer/HBoxContainer3/PanelContainer2/LevelIndicator"]
+layout_mode = 2
+text = "Level"
+
+[node name="Level" type="Label" parent="PanelContainer/MainContainer/HBoxContainer3/PanelContainer2/LevelIndicator"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0000"
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MainContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="DamageIndicator" type="HBoxContainer" parent="PanelContainer/MainContainer/HBoxContainer3/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="PanelContainer/MainContainer/HBoxContainer3/PanelContainer/DamageIndicator"]
+layout_mode = 2
+text = "Damage"
+
+[node name="Damage" type="Label" parent="PanelContainer/MainContainer/HBoxContainer3/PanelContainer/DamageIndicator"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "00"
+
+[node name="ShutDown" type="Button" parent="PanelContainer/MainContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "Shut Down"

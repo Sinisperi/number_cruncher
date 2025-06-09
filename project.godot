@@ -1,0 +1,41 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="number_cruncher"
+run/main_scene="uid://cpq01qqmcqdi1"
+config/features=PackedStringArray("4.4", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+EventBus="*res://scripts/autoloads/event_bus.gd"
+PlayerData="*res://scripts/autoloads/player_data.gd"
+Refs="*res://scripts/autoloads/refs.gd"
+SceneLoader="*res://scripts/autoloads/scene_loader.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[gui]
+
+theme/custom_font="uid://dgwvx7yc6mkur"
+theme/default_font_subpixel_positioning=3
+
+[physics]
+
+common/physics_interpolation=true
+
+[rendering]
+
+viewport/hdr_2d=true

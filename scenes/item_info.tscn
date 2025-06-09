@@ -1,0 +1,102 @@
+[gd_scene load_steps=6 format=3 uid="uid://cl5xgj3gl7wiq"]
+
+[ext_resource type="Script" uid="uid://bhmjyyphn42sm" path="res://scripts/item_info.gd" id="1_wvbq2"]
+
+[sub_resource type="Gradient" id="Gradient_wvbq2"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p6qju"]
+gradient = SubResource("Gradient_wvbq2")
+width = 1
+
+[sub_resource type="Gradient" id="Gradient_p6qju"]
+offsets = PackedFloat32Array(0.434043, 0.570213)
+colors = PackedColorArray(1, 0.831373, 0.321569, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wvbq2"]
+gradient = SubResource("Gradient_p6qju")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="ItemInfo" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+script = ExtResource("1_wvbq2")
+
+[node name="TheContainer" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+offset_right = 200.0
+offset_bottom = 92.0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="TheContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture1D_p6qju")
+
+[node name="MarginContainer" type="MarginContainer" parent="TheContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TheContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TheContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="TheContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "The mega crunch ability"
+
+[node name="PriceContainer" type="HBoxContainer" parent="TheContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 2
+
+[node name="Price" type="Label" parent="TheContainer/MarginContainer/VBoxContainer/HBoxContainer/PriceContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 14
+text = "000"
+
+[node name="Coin" type="TextureRect" parent="TheContainer/MarginContainer/VBoxContainer/HBoxContainer/PriceContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+texture = SubResource("GradientTexture2D_wvbq2")
+
+[node name="Description" type="Label" parent="TheContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(176, 0)
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_font_sizes/font_size = 12
+text = "anither damage nighbor but different anither damage nighbor but different anither damage "
+autowrap_mode = 2

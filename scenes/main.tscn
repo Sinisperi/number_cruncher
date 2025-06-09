@@ -1,0 +1,284 @@
+[gd_scene load_steps=23 format=3 uid="uid://6mxejg3yfpie"]
+
+[ext_resource type="Script" uid="uid://cduucfoe5gtad" path="res://scripts/main.gd" id="1_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://cm88phctt2j1i" path="res://assets/bg.jpg" id="2_choun"]
+[ext_resource type="PackedScene" uid="uid://4o838anr7e" path="res://scenes/transition_button.tscn" id="2_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://djjijc1gygm01" path="res://scenes/workspace.tscn" id="3_trceg"]
+[ext_resource type="PackedScene" uid="uid://e1v8xifk3xxp" path="res://scenes/shop.tscn" id="5_choun"]
+[ext_resource type="PackedScene" uid="uid://dubipt05fnvrb" path="res://scenes/vending_machine.tscn" id="6_tefeu"]
+[ext_resource type="Script" uid="uid://ugo1iahjurep" path="res://scripts/inventory.gd" id="7_85g3d"]
+[ext_resource type="Script" uid="uid://c1t2stw7c0j0" path="res://scripts/resources/item_data.gd" id="7_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://bnc46m14mgvuw" path="res://scenes/inventory_slot.tscn" id="8_choun"]
+[ext_resource type="Script" uid="uid://dkjt2n22xnlxf" path="res://scripts/resources/damage_neighbour.gd" id="8_eb6dy"]
+[ext_resource type="Shader" uid="uid://cojsqap7dpno1" path="res://shaders/monitor.gdshader" id="11_ya4ey"]
+
+[sub_resource type="Environment" id="Environment_choun"]
+background_mode = 3
+glow_enabled = true
+glow_strength = 0.53
+glow_bloom = 1.0
+glow_blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_ya4ey"]
+_limits = [0.0, 1.0, 0.0, 1024.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(517.71, 0.345975), 0.0, 0.0, 0, 0, Vector2(673.784, 1), 0.0, 0.0, 0, 0, Vector2(940.253, 0.94969), 0.0, 0.0, 0, 0, Vector2(1024, 0.778638), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_trceg"]
+size = Vector2(64, 64)
+
+[sub_resource type="Resource" id="Resource_jkv2x"]
+script = ExtResource("8_eb6dy")
+activation_flags = 4
+name = "Damage neighbor on crunch"
+texture = SubResource("PlaceholderTexture2D_trceg")
+price = 3
+description = "Damages a random neighboring number of the last number crunched"
+metadata/_custom_type_script = "uid://dkjt2n22xnlxf"
+
+[sub_resource type="Gradient" id="Gradient_jbj1t"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_muem4"]
+gradient = SubResource("Gradient_jbj1t")
+
+[sub_resource type="Resource" id="Resource_dp3eg"]
+script = ExtResource("8_eb6dy")
+activation_flags = 1
+name = "damage n diff"
+texture = SubResource("GradientTexture2D_muem4")
+price = 5
+description = "anither damage nighbor but different anither damage nighbor but different anither damage "
+metadata/_custom_type_script = "uid://dkjt2n22xnlxf"
+
+[sub_resource type="Gradient" id="Gradient_ya4ey"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_eb6dy"]
+gradient = SubResource("Gradient_ya4ey")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eb6dy"]
+shader = ExtResource("11_ya4ey")
+shader_parameter/resolution = Vector2(1920, 1080)
+shader_parameter/scan_line_amount = 1.0
+shader_parameter/warp_amount = 0.1
+shader_parameter/noise_amount = 0.0
+shader_parameter/interference_amount = 0.208
+shader_parameter/grille_amount = 0.1
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 0.0
+shader_parameter/vignette_intensity = 0.0
+shader_parameter/aberation_amount = 0.624
+shader_parameter/roll_line_amount = 0.0
+shader_parameter/roll_speed = -8.0
+shader_parameter/scan_line_strength = -8.0
+shader_parameter/pixel_strength = -3.876
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_trceg"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ya4ey")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_choun")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_choun")
+stretch_mode = 1
+
+[node name="Workspace" parent="." instance=ExtResource("3_trceg")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+curve = SubResource("Curve_ya4ey")
+
+[node name="Shop" parent="." instance=ExtResource("5_choun")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = -1151.0
+offset_right = -1151.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+items_list = Array[ExtResource("7_ya4ey")]([SubResource("Resource_jkv2x"), SubResource("Resource_dp3eg")])
+
+[node name="VendingMachine" parent="." instance=ExtResource("6_tefeu")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1158.0
+offset_right = 1158.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="ToLeft" parent="MarginContainer" instance=ExtResource("2_o6xl0")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="ToRight" parent="MarginContainer" instance=ExtResource("2_o6xl0")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+is_left = false
+
+[node name="InventoryContainer" type="PanelContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/InventoryContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_eb6dy")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/InventoryContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer2" type="VBoxContainer" parent="MarginContainer/InventoryContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Inventory" type="HBoxContainer" parent="MarginContainer/InventoryContainer/MarginContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 20.0
+script = ExtResource("7_85g3d")
+
+[node name="InventorySlot" parent="MarginContainer/InventoryContainer/MarginContainer/HBoxContainer2/Inventory" instance=ExtResource("8_choun")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="MarginContainer/InventoryContainer/MarginContainer/HBoxContainer2/Inventory" instance=ExtResource("8_choun")]
+layout_mode = 2
+
+[node name="InventorySlot3" parent="MarginContainer/InventoryContainer/MarginContainer/HBoxContainer2/Inventory" instance=ExtResource("8_choun")]
+layout_mode = 2
+
+[node name="InventorySlot4" parent="MarginContainer/InventoryContainer/MarginContainer/HBoxContainer2/Inventory" instance=ExtResource("8_choun")]
+layout_mode = 2
+
+[node name="InventorySlot5" parent="MarginContainer/InventoryContainer/MarginContainer/HBoxContainer2/Inventory" instance=ExtResource("8_choun")]
+layout_mode = 2
+
+[node name="InventorySlot6" parent="MarginContainer/InventoryContainer/MarginContainer/HBoxContainer2/Inventory" instance=ExtResource("8_choun")]
+layout_mode = 2
+
+[node name="InventorySlot7" parent="MarginContainer/InventoryContainer/MarginContainer/HBoxContainer2/Inventory" instance=ExtResource("8_choun")]
+layout_mode = 2
+
+[node name="InventorySlot8" parent="MarginContainer/InventoryContainer/MarginContainer/HBoxContainer2/Inventory" instance=ExtResource("8_choun")]
+layout_mode = 2
+
+[node name="InventorySlot9" parent="MarginContainer/InventoryContainer/MarginContainer/HBoxContainer2/Inventory" instance=ExtResource("8_choun")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/InventoryContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="Label" type="Label" parent="MarginContainer/InventoryContainer/MarginContainer/HBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "1"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/InventoryContainer/MarginContainer/HBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "2"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="MarginContainer/InventoryContainer/MarginContainer/HBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "3"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="MarginContainer/InventoryContainer/MarginContainer/HBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "4"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="MarginContainer/InventoryContainer/MarginContainer/HBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "5"
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="MarginContainer/InventoryContainer/MarginContainer/HBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "6"
+horizontal_alignment = 1
+
+[node name="Label7" type="Label" parent="MarginContainer/InventoryContainer/MarginContainer/HBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "7"
+horizontal_alignment = 1
+
+[node name="Label8" type="Label" parent="MarginContainer/InventoryContainer/MarginContainer/HBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "8"
+horizontal_alignment = 1
+
+[node name="Label9" type="Label" parent="MarginContainer/InventoryContainer/MarginContainer/HBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "9"
+horizontal_alignment = 1
+
+[node name="CRTOverlay" type="TextureRect" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_eb6dy")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("NoiseTexture2D_trceg")

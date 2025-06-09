@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://4o838anr7e"]
+
+[ext_resource type="Script" uid="uid://c3ka8rr06lggf" path="res://scripts/transition_button.gd" id="1_kenfj"]
+
+[node name="TransitionButton" type="Button"]
+custom_minimum_size = Vector2(50, 0)
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 8.0
+grow_vertical = 2
+script = ExtResource("1_kenfj")
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 26)
+layout_mode = 2
+offset_left = -125.0
+offset_top = 311.0
+offset_right = 175.0
+offset_bottom = 337.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5708
+pivot_offset = Vector2(150, 13)
+text = "Vending Machine"
+horizontal_alignment = 1
+vertical_alignment = 1
