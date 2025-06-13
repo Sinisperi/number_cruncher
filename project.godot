@@ -27,6 +27,10 @@ SceneLoader="*res://scripts/autoloads/scene_loader.gd"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[global_group]
+
+black_hole=""
+
 [gui]
 
 theme/custom_font="uid://dgwvx7yc6mkur"

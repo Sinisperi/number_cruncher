@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bajdi7xcqiamq" path="res://scripts/draggable_item.gd" id="1_c446u"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_c446u"]
-size = Vector2(32, 32)
+size = Vector2(128, 128)
 
 [node name="DraggableItem" type="Sprite2D"]
 texture = SubResource("PlaceholderTexture2D_c446u")

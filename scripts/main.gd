@@ -60,28 +60,35 @@ func _on_window_resized() ->void:
 	crt_overlay.material.set("shader_parameter/resolution", get_viewport().size * 1.5)
 
 func create_item_info(item_data: ItemData, is_oriented_down: bool = true) ->void:
-	current_item_info = item_info_scene.instantiate()
-	current_item_info.is_oriented_down = is_oriented_down
-	current_item_info.update_info(item_data)
-	add_child(current_item_info)
-	move_child(current_item_info, -2)
+	if !current_item_info:
+		current_item_info = item_info_scene.instantiate()
+		current_item_info.is_oriented_down = is_oriented_down
+		add_child(current_item_info)
+		move_child(current_item_info, -2)
+		current_item_info.update_info(item_data)
 
 
 func destroy_item_info() ->void:
 	if current_item_info:
-		print("TODO make item info dissapear gracefully")
-		remove_child(current_item_info)
 		current_item_info.queue_free()
+		current_item_info = null
+
 
 
 func create_draggable_item(item_data: ItemData, pos: Vector2, is_bought: bool = true) ->void:
 	var draggable_item = draggable_item_scene.instantiate()
+	destroy_draggable_item()
 	draggable_item.position = pos
 	draggable_item.is_bought = is_bought
 	draggable_item.item_data = item_data
 	currently_held_item = draggable_item
 	add_child(draggable_item)
 
+
+func destroy_draggable_item() ->void:
+	if currently_held_item:
+		currently_held_item.queue_free()
+		currently_held_item = null
 
 
 func start_new_level() ->void:

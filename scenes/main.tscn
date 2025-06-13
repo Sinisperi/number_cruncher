@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://6mxejg3yfpie"]
+[gd_scene load_steps=38 format=3 uid="uid://6mxejg3yfpie"]
 
 [ext_resource type="Script" uid="uid://cduucfoe5gtad" path="res://scripts/main.gd" id="1_ya4ey"]
 [ext_resource type="Texture2D" uid="uid://cm88phctt2j1i" path="res://assets/bg.jpg" id="2_choun"]
@@ -7,9 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://e1v8xifk3xxp" path="res://scenes/shop.tscn" id="5_choun"]
 [ext_resource type="PackedScene" uid="uid://dubipt05fnvrb" path="res://scenes/vending_machine.tscn" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://ugo1iahjurep" path="res://scripts/inventory.gd" id="7_85g3d"]
+[ext_resource type="Script" uid="uid://la2qkb7uk3j" path="res://scripts/resources/damage_random.gd" id="7_eb6dy"]
 [ext_resource type="Script" uid="uid://c1t2stw7c0j0" path="res://scripts/resources/item_data.gd" id="7_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://bnc46m14mgvuw" path="res://scenes/inventory_slot.tscn" id="8_choun"]
 [ext_resource type="Script" uid="uid://dkjt2n22xnlxf" path="res://scripts/resources/damage_neighbour.gd" id="8_eb6dy"]
+[ext_resource type="Script" uid="uid://dkfswd07gvefl" path="res://scripts/resources/consumable_item.gd" id="9_trceg"]
+[ext_resource type="Texture2D" uid="uid://iql3pjrv5tdm" path="res://assets/key.png" id="10_a8y0u"]
 [ext_resource type="Shader" uid="uid://cojsqap7dpno1" path="res://shaders/monitor.gdshader" id="11_ya4ey"]
 
 [sub_resource type="Environment" id="Environment_choun"]
@@ -33,6 +36,7 @@ activation_flags = 4
 name = "Damage neighbor on crunch"
 texture = SubResource("PlaceholderTexture2D_trceg")
 price = 3
+rarity = 30
 description = "Damages a random neighboring number of the last number crunched"
 metadata/_custom_type_script = "uid://dkjt2n22xnlxf"
 
@@ -47,8 +51,100 @@ activation_flags = 1
 name = "damage n diff"
 texture = SubResource("GradientTexture2D_muem4")
 price = 5
+rarity = 20
 description = "anither damage nighbor but different anither damage nighbor but different anither damage "
 metadata/_custom_type_script = "uid://dkjt2n22xnlxf"
+
+[sub_resource type="Gradient" id="Gradient_trceg"]
+offsets = PackedFloat32Array(0.516304, 0.652174)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a8y0u"]
+gradient = SubResource("Gradient_trceg")
+fill = 1
+fill_from = Vector2(0.487179, 0.465812)
+
+[sub_resource type="Resource" id="Resource_jbj1t"]
+script = ExtResource("7_eb6dy")
+activation_flags = 2
+name = "the ORB"
+texture = SubResource("GradientTexture2D_a8y0u")
+price = 3
+rarity = 50
+description = "damage random every damage"
+metadata/_custom_type_script = "uid://la2qkb7uk3j"
+
+[sub_resource type="Gradient" id="Gradient_eb6dy"]
+offsets = PackedFloat32Array(0, 0.00543478, 0.690217, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 0.266667, 0.266667, 1, 0.690217, 0.690217, 0.690217, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_trceg"]
+gradient = SubResource("Gradient_eb6dy")
+fill_from = Vector2(0.457265, 0.487179)
+
+[sub_resource type="Resource" id="Resource_a8y0u"]
+script = ExtResource("7_eb6dy")
+activation_flags = 4
+name = "asdf"
+texture = SubResource("GradientTexture2D_trceg")
+price = 3
+rarity = 10
+description = "asdfe as'd;k epoa s;lkd"
+metadata/_custom_type_script = "uid://la2qkb7uk3j"
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_um5cl"]
+size = Vector2(32, 32)
+
+[sub_resource type="Resource" id="Resource_q0fei"]
+script = ExtResource("9_trceg")
+effects = {
+"attempts": 1,
+"damage": 0,
+"unlocked_inventory_slots": 0
+}
+name = "Extra try"
+texture = SubResource("PlaceholderTexture2D_um5cl")
+price = 6
+rarity = 20
+description = "Get extra attempt to crunch!"
+metadata/_custom_type_script = "uid://dkfswd07gvefl"
+
+[sub_resource type="Gradient" id="Gradient_a3lgy"]
+colors = PackedColorArray(0, 1, 0, 1, 1, 0, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ruqul"]
+gradient = SubResource("Gradient_a3lgy")
+fill = 1
+fill_from = Vector2(0.484018, 0.479452)
+fill_to = Vector2(0.776256, 0.173516)
+
+[sub_resource type="Resource" id="Resource_t0d2s"]
+script = ExtResource("9_trceg")
+effects = {
+"attempts": 0,
+"damage": 2,
+"unlocked_inventory_slots": 0
+}
+name = "Extra damage"
+texture = SubResource("GradientTexture2D_ruqul")
+price = 3
+rarity = 20
+description = "+1 Damage"
+metadata/_custom_type_script = "uid://dkfswd07gvefl"
+
+[sub_resource type="Resource" id="Resource_muem4"]
+script = ExtResource("9_trceg")
+effects = {
+"attempts": 0,
+"damage": 0,
+"unlocked_inventory_slots": 3
+}
+name = "thgingimabop"
+texture = ExtResource("10_a8y0u")
+price = 10
+rarity = 50
+description = ""
+metadata/_custom_type_script = "uid://dkfswd07gvefl"
 
 [sub_resource type="Gradient" id="Gradient_ya4ey"]
 offsets = PackedFloat32Array(0)
@@ -119,7 +215,7 @@ offset_left = -1151.0
 offset_right = -1151.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
-items_list = Array[ExtResource("7_ya4ey")]([SubResource("Resource_jkv2x"), SubResource("Resource_dp3eg")])
+items_list = Array[ExtResource("7_ya4ey")]([SubResource("Resource_jkv2x"), SubResource("Resource_dp3eg"), SubResource("Resource_jbj1t"), SubResource("Resource_a8y0u")])
 
 [node name="VendingMachine" parent="." instance=ExtResource("6_tefeu")]
 unique_name_in_owner = true
@@ -133,6 +229,7 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+stock = Array[ExtResource("7_ya4ey")]([SubResource("Resource_q0fei"), SubResource("Resource_t0d2s"), SubResource("Resource_muem4")])
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

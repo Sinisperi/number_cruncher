@@ -13,5 +13,7 @@ signal money_changed()
 signal current_level_changed()
 @warning_ignore("unused_signal")
 signal damage_changed()
+@warning_ignore("unused_signal")
+signal inventory_slots_changed()
 
 

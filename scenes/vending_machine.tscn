@@ -1,47 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dubipt05fnvrb"]
+[gd_scene load_steps=6 format=3 uid="uid://dubipt05fnvrb"]
 
 [ext_resource type="Script" uid="uid://x53x4t37r72b" path="res://scripts/vending_machine.gd" id="1_f82dn"]
-[ext_resource type="Script" uid="uid://dkfswd07gvefl" path="res://scripts/resources/consumable_item.gd" id="2_c62n2"]
 [ext_resource type="PackedScene" uid="uid://bh8rdpd1cn0hg" path="res://scenes/vending_machine_item.tscn" id="2_pxr7o"]
 [ext_resource type="Script" uid="uid://cfbf2y1ojnxdy" path="res://scripts/vending_machine_button.gd" id="4_um5cl"]
 [ext_resource type="PackedScene" uid="uid://diaq3aqps8814" path="res://scenes/money_indicator.tscn" id="5_q0fei"]
 [ext_resource type="Texture2D" uid="uid://bd6yeeyoeuwoq" path="res://assets/vending_machine.jpg" id="6_pxr7o"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_um5cl"]
-size = Vector2(32, 32)
-
-[sub_resource type="Resource" id="Resource_q0fei"]
-script = ExtResource("2_c62n2")
-effects = {
-"attempts": 1,
-"damage": 0
-}
-name = "Extra try"
-texture = SubResource("PlaceholderTexture2D_um5cl")
-price = 6
-description = "Get extra attempt to crunch!"
-metadata/_custom_type_script = "uid://dkfswd07gvefl"
-
-[sub_resource type="Gradient" id="Gradient_a3lgy"]
-colors = PackedColorArray(0, 1, 0, 1, 1, 0, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ruqul"]
-gradient = SubResource("Gradient_a3lgy")
-fill = 1
-fill_from = Vector2(0.484018, 0.479452)
-fill_to = Vector2(0.776256, 0.173516)
-
-[sub_resource type="Resource" id="Resource_t0d2s"]
-script = ExtResource("2_c62n2")
-effects = {
-"attempts": 0,
-"damage": 1
-}
-name = "Extra damage"
-texture = SubResource("GradientTexture2D_ruqul")
-price = 3
-description = "+1 Damage"
-metadata/_custom_type_script = "uid://dkfswd07gvefl"
 
 [node name="VendingMachine" type="Control"]
 layout_mode = 3
@@ -53,7 +16,6 @@ size_flags_vertical = 3
 mouse_filter = 1
 script = ExtResource("1_f82dn")
 vending_machine_item_scene = ExtResource("2_pxr7o")
-stock = Array[ExtResource("2_c62n2")]([SubResource("Resource_q0fei"), SubResource("Resource_t0d2s")])
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(500, 500)
@@ -128,13 +90,14 @@ layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.85
 
 [node name="NumberPad" type="GridContainer" parent="PanelContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 0
 columns = 3
 
 [node name="Button" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/NumberPad"]

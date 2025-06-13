@@ -1,11 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://bnc46m14mgvuw"]
+[gd_scene load_steps=5 format=3 uid="uid://bnc46m14mgvuw"]
 
 [ext_resource type="Script" uid="uid://c1uw1tvl781vo" path="res://scripts/inventory_slot.gd" id="1_dxvxp"]
+[ext_resource type="Texture2D" uid="uid://b4evlhvf5kpoi" path="res://assets/lock.png" id="2_bxqf6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bxqf6"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_bxqf6"]
+size = Vector2(64, 64)
 
 [node name="InventorySlot" type="PanelContainer"]
 custom_minimum_size = Vector2(64, 64)
 offset_right = 40.0
 offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bxqf6")
 script = ExtResource("1_dxvxp")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -13,3 +20,13 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
+texture = SubResource("PlaceholderTexture2D_bxqf6")
+
+[node name="LockedIcon" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_bxqf6")

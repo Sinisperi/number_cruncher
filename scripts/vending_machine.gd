@@ -2,9 +2,9 @@ class_name VendingMachine extends Control
 
 
 
-@export var items_amount: int = 10
+@export var items_amount: int = 5
 @export var vending_machine_item_scene: PackedScene
-@export var stock: Array[ConsumableItem] = []
+@export var stock: Array[ItemData] = []
 @onready var vending_machine_item_container: GridContainer = %ItemDisplay
 @onready var purchase_button: Button = %Purchase
 @onready var number_pad: GridContainer = %NumberPad
@@ -21,13 +21,15 @@ class_name VendingMachine extends Control
 var currently_selected_item_index: int = -1
 
 var current_code: String = ""
+var loot_creator: LootCreator = null
 
 func _ready() ->void:
-	populate_slots()
 	purchase_button.pressed.connect(_on_purchase_button_pressed)
 	reset_button.pressed.connect(_on_reset_button_pressed)
 	purchase_button.disabled = false
 	connect_to_buttons()
+	loot_creator = LootCreator.new(stock as Array[ItemData])
+	populate_slots()
 
 
 
@@ -39,8 +41,7 @@ func populate_slots() ->void:
 
 	for i in items_amount:
 		var vmi = vending_machine_item_scene.instantiate()
-		if randf() < 0.9:
-			vmi.data = stock.pick_random()
+		vmi.data = loot_creator.pick_item() as ConsumableItem
 		vending_machine_item_container.add_child(vmi)
 
 
@@ -58,6 +59,7 @@ func _on_purchase_button_pressed() ->void:
 			PlayerData.money -= item.data.price
 			PlayerData.damage += item.data.effects.damage
 			PlayerData.max_attempts += item.data.effects.attempts
+			PlayerData.unlocked_inventory_slots += item.data.effects.unlocked_inventory_slots
 			item.purchase()
 		current_code = ""
 
